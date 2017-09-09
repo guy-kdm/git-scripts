@@ -1,0 +1,10 @@
+#!/bin/bash
+
+git clone $1
+PRJ_NAME=$(basename $1 .git)
+cd $PRJ_NAME
+npm i
+./commit $1 initial commit 💢
+git checkout -b staging 
+git checkout -b develop
+
