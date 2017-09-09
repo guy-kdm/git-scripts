@@ -1,8 +1,10 @@
 #!/bin/bash
 
-git status
+echo "'$*'"
+
+# git status
 git add .
-git commit -m $1
+git commit -m "'$*'"
 git pull
 git push
 git status
