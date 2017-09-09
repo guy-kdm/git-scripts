@@ -1,10 +1,21 @@
 #!/bin/bash
 
-git clone $1
-PRJ_NAME=$(basename $1 .git)
-cd $PRJ_NAME
-npm i
-./commit $1 initial commit 💢
-git checkout -b staging 
-git checkout -b develop
+repo_name=$1
+username=`git config github.user`
 
+$(dirname $0)/github-create $1
+conn_string="git@github.com:$username/$repo_name.git"
+
+git clone $conn_string
+cd $1
+
+# PRJ_NAME=$(basename $1 .git)
+# cd $PRJ_NAME
+npm init
+
+git add .
+git commit -m 'initial commit 💢'
+git checkout -b staging
+git push -u origin staging
+git checkout -b develop
+git push -u origin develop
